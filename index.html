@@ -15,7 +15,7 @@
 
     <script>
       // Create reference instance
-      // import { marked } from 'marked';
+      //  import { marked } from 'marked';
       
       // // Set options
       // // `highlight` example uses https://highlightjs.org
@@ -38,10 +38,9 @@
       
       // // Compile
       // console.log(marked.parse("# moon.org"));
-
-      function upDatePreview() {
-      document.getElementById
-        ("preview").innerHTML = marked.parse(# document.getElementById("editor").value)
+      
+        function updatePreview() {
+        document.getElementById("previewer").innerHTML = mark(document.getElementById("editor").value)
       }
       </script>
 
@@ -57,7 +56,7 @@
         <div class="col-6 bg-info">
             <div>Editor</div>
           
-          <textarea id="editor">Make here</textarea>
+          <textarea id="editor" onkeyup="updatePreview()">Make here</textarea>
         </div>
         <div class="col-6 bg-success">
             <div>Previewer</div>
