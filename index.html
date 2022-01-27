@@ -9,40 +9,96 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <title>Markdown Previewer</title>
-
-    <script src="index.js"></script>    
-  </head>
-  <body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.4.0/marked.js"></script>
+    <!-- <script src="marked.js"></script>     -->
+  
+  
 
     <script>      
         function updatePreview() {
-        document.getElementById("previewer").innerHTML = mark(document.getElementById("editor").value)
-      }
-      </script>
+         let previewElement = document.getElementById("preview");
+         let editorValue = document.getElementById("editor").value;
+         let markedUpHTML = marked(editorValue);
+         previewElement.innerHTML = markedUpHTML;
+        
+      };
 
+        function setDefault() {
+          let defaultText = 
+`# Welcome to my Markdown Previewer!
+## Heading level 2
+[random link to markdown]
+(https://www.mychemicalromance.com/)
+
+This is a regular paragraph.
+            <table>
+                <tr>
+                    <td>Foo</td>
+                </tr>
+            </table>          
+
+This is another regular paragraph.
+
+\`inline code?\`
+
+    <html>
+      <head>
+      </head>
+    </html>
+
+1. First item
+2. Second item
+3. Third item
+4. Fourth item
+
+>learn to be a useful programmer
+
+![freeCodeCamp Logo](no-matter-what.jpeg)
+
+
+I just love **bold text**.`
+
+;
+
+          let editorField = 
+            document.getElementById("editor");
+          let previewElement = document.getElementById("preview");
+            editorField.value = defaultText;
+            previewElement.innerHTML = marked(defaultText);
+        }
+
+    </script>
+  </head>  
+<body onload="setDefault()">
     <div class="container-fluid">
       <div class="row">
-        <div class="col text-center bg-primary" >
+        <div class="col text-center bg-secondary" >
          <h1>Markdown Previewer</h1>
         </div>
       </div>
-    </div>
 
-    <div class="row">
-        <div class="col-6 bg-info">
-            <div>Editor</div>
-          
-          <textarea id="editor" onkeyup="updatePreview(preview)">Make here</textarea>
-        </div>
+<!-- Editor -->
+       <div class="row">
+        <div class="col-6 bg-dark">
+            <div>
+              <h1 class="text-light">Editor</h1>
+            </div>
+             <textarea class="col-10 my-6" id="editor" onkeyup="updatePreview()"></textarea>
+            </div>
+<!-- Previewer -->
         <div class="col-6 bg-success">
-            <div>Previewer</div>
+            <div>
+              <h1 class="text-light">Previewer</h1>
+            </div>
           
-          <div id="preview"></div>
+          <div class="bg-light" id="preview">edited material</div>
           
         </div>
        </div>
+    </div>
 
 
+    <!--**BONUS** we want <CR></CR> to render as <br></br> -->
 
     <!-- Optional JavaScript; choose one of the two! -->
 
